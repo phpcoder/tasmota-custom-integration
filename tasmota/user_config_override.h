@@ -71,8 +71,9 @@
 
 
 
-#define USE_MY_PROJECT      // Include your custom code into Tasmota
+//#define USE_MY_PROJECT      // Include your custom code into Tasmota
 //#define USE_MY_PROJECT_CMD  // Include your custom code into Tasmota
+#define USE_MY_PROJECT_EX3
 
 
 // You might even pass some parameters from the command line ----------------------------
