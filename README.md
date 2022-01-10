@@ -59,6 +59,8 @@ and a template with custom commands `xdrv_101_my_project_with_commands.ino`. The
 
 Example 3 is added to adopt suggestions of the Tasmota developer as indicated in [this discussion](https://github.com/arendst/Tasmota/discussions/14205). It makes dynamic allocation of required large-size buffers and more advanced way of addind driver in Tasmota.
 
+Another example is available in a separate repository: [Tasmota Nexus 433 MHz to MQTT Gateway for Home Assistant](https://github.com/phpcoder/tasmota-nexus-mqtt).
+
 To compile any of your custom drivers use the corresponding `#define` statement as shown in `user_config_override.h`. To build and upload your custom Tasmota firmware use a command:
 
 ```
