@@ -57,7 +57,7 @@ Examples of config files are included in this repository.
 To add a support for your own hardware to Tasmota you need to create a driver. The code is provided in a file `tasmota/xdrv_xxxx.ino`. For custom integration the driver numbering from 100 to 128 is available. Every driver shoud have a unique number. This repository includes 2 examples: a bare minimum code template `xdrv_100_my_project_minimal.ino`
 and a template with custom commands `xdrv_101_my_project_with_commands.ino`. The latter includes an example of sending a MQTT message.
 
-Example 3 is added to adopt suggestions of the Tasmota developer as indicated in [this discussion](https://github.com/arendst/Tasmota/discussions/14205). It makes dynamic allocation of required large-size buffers and more advanced way of addind driver in Tasmota.
+Example 3 is added to adopt suggestions of the Tasmota developer as indicated in [this discussion](https://github.com/arendst/Tasmota/discussions/14205). It makes dynamic allocation of required large-size buffers and more advanced way of adding driver in Tasmota.
 
 Another example is available in a separate repository: [Tasmota Nexus 433 MHz to MQTT Gateway for Home Assistant](https://github.com/phpcoder/tasmota-nexus-mqtt).
 
