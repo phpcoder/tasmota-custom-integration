@@ -19,6 +19,8 @@
  * My IoT Device Functions
 \*********************************************************************************************/
 
+// This variable will be set to true after initialization
+bool initSuccess = false;
 
 /* 
   Optional: if you need to pass any command for your device 
@@ -85,6 +87,9 @@ void MyProjectInit()
 
   Serial.begin(115200);
 
+  // Set initSuccess at the very end of the init process
+  // Init is successful
+  initSuccess = true;
 
 }
 
@@ -108,28 +113,35 @@ void MyProjectProcessing(void)
 /*********************************************************************************************\
  * Interface
 \*********************************************************************************************/
-bool Xdrv101(uint8_t function)
+bool Xdrv101(uint32_t function)
 {
 
 
   bool result = false;
 
-  switch (function) {
-    case FUNC_COMMAND:
-      AddLog(LOG_LEVEL_DEBUG_MORE, PSTR("Calling My Project Command..."));
-      result = DecodeCommand(MyProjectCommands, MyProjectCommand);
-      break;
-    case FUNC_INIT:
-      MyProjectInit();
-      AddLog(LOG_LEVEL_DEBUG_MORE, PSTR("My project init is done..."));
-      break;
-//    Select suitable interval for polling your function
+  if (FUNC_INIT == function) {
+    MyProjectInit();
+    AddLog(LOG_LEVEL_DEBUG_MORE, PSTR("My project init is done..."));
+  }
+  else if (initSuccess) {
+
+    switch (function) {
+      // Select suitable interval for polling your function
 //    case FUNC_EVERY_SECOND:
-    case FUNC_EVERY_250_MSECOND:
+      case FUNC_EVERY_250_MSECOND:
 //    case FUNC_EVERY_200_MSECOND:
 //    case FUNC_EVERY_100_MSECOND:
-      MyProjectProcessing();
-      break;
+        MyProjectProcessing();
+        break;
+
+      // Command support
+      case FUNC_COMMAND:
+        AddLog(LOG_LEVEL_DEBUG_MORE, PSTR("Calling My Project Command..."));
+        result = DecodeCommand(MyProjectCommands, MyProjectCommand);
+        break;
+
+    }
+
   }
 
   return result;

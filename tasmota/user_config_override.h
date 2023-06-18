@@ -35,8 +35,6 @@
 \*****************************************************************************************************/
 
 
-
-
 // -- Master parameter control --------------------
 #undef  CFG_HOLDER
 #define CFG_HOLDER        4617                   // [Reset 1] Change this value to load SECTION1 configuration parameters to flash
@@ -71,18 +69,8 @@
 
 
 
-//#define USE_MY_PROJECT      // Include your custom code into Tasmota
-//#define USE_MY_PROJECT_CMD  // Include your custom code into Tasmota
+//#define USE_MY_PROJECT  // Include your custom code into Tasmota
 #define USE_MY_PROJECT_EX3
-
-
-// You might even pass some parameters from the command line ----------------------------
-// Ie:  export PLATFORMIO_BUILD_FLAGS='-DUSE_CONFIG_OVERRIDE -DMY_IP="192.168.1.99" -DMY_GW="192.168.1.1" -DMY_DNS="192.168.1.1"'
-
-// !!! Remember that your changes GOES AT THE BOTTOM OF THIS FILE right before the last #endif !!!
-
-
-
 
 
 

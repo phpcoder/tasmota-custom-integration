@@ -34,6 +34,13 @@ In my DIY projects, I use [M5Stick-C](https://docs.m5stack.com/en/core/m5stickc)
 
 Tasmota comes in several [firmware variants](https://tasmota.github.io/docs/Firmware-Builds/#firmware-variants). The option I use is `tasmota-lite`, which has all needed components included with minimal sensor/features support. If any extra sensor/feature is required, it is possible to add more modules to a [custom build](https://tasmota.github.io/docs/Compile-your-build/#customize-your-build).
 
+
+### UPD June 18, 2023
+
+Examples in this repository are updated to the Tasmota-12.5.0.
+
+
+
 ## Setting up development environment
 
 To start with, you need to install PlatformIO to your system. The installation and use of your favorite code editor or IDE is [well described](https://tasmota.github.io/docs/Compile-your-build/#compiling-tools). Then you need to clone Tasmota development or stable (preferred) branch to your local system. The process of making a custom Tasmota build is [well covered](https://tasmota.github.io/docs/Compile-your-build/#customize-your-build) too. In short, you need to create the following configuration files:

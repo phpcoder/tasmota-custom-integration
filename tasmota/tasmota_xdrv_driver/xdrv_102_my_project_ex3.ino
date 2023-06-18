@@ -19,11 +19,13 @@
  * My IoT Device Functions
 \*********************************************************************************************/
 
+// This variable will be set to true after initialization
+bool initSuccess = false;
+
 char * payload = nullptr;
 size_t payload_size = 100;
 char * topic = nullptr;
 size_t topic_size = 30;
-bool initSuccess = false;
 
 
 /* 
@@ -124,7 +126,7 @@ void MyProjectProcessing(void)
 /*********************************************************************************************\
  * Interface
 \*********************************************************************************************/
-bool Xdrv102(uint8_t function)
+bool Xdrv102(uint32_t function)
 {
 
 
@@ -136,17 +138,20 @@ bool Xdrv102(uint8_t function)
   else if (initSuccess) {
 
     switch (function) {
-      case FUNC_COMMAND:
-        AddLog(LOG_LEVEL_DEBUG, PSTR("Calling My Project Command..."));
-        result = DecodeCommand(MyProjectCommands, MyProjectCommand);
-        break;
-  //    Select suitable interval for polling your function
-  //    case FUNC_EVERY_SECOND:
+      // Select suitable interval for polling your function
+//    case FUNC_EVERY_SECOND:
       case FUNC_EVERY_250_MSECOND:
-  //    case FUNC_EVERY_200_MSECOND:
-  //    case FUNC_EVERY_100_MSECOND:
+//    case FUNC_EVERY_200_MSECOND:
+//    case FUNC_EVERY_100_MSECOND:
         MyProjectProcessing();
         break;
+
+      // Command support
+      case FUNC_COMMAND:
+        AddLog(LOG_LEVEL_DEBUG_MORE, PSTR("Calling My Project Command..."));
+        result = DecodeCommand(MyProjectCommands, MyProjectCommand);
+        break;
+
     }
 
   }
