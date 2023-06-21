@@ -61,10 +61,16 @@ Examples of config files are included in this repository.
 
 ## Add your code to Tasmota
 
-To add a support for your own hardware to Tasmota you need to create a driver. The code is provided in a file `tasmota/xdrv_xxxx.ino`. For custom integration the driver numbering from 100 to 128 is available. Every driver shoud have a unique number. This repository includes 2 examples: a bare minimum code template `xdrv_100_my_project_minimal.ino`
+To add a support for your own hardware to Tasmota you need to create a driver. The code is provided in a file `tasmota/tasmota_xdrv_driver/xdrv_xxxx.ino`. For custom integration the driver numbering from 100 to 128 is available. Every driver shoud have a unique number. This repository includes 2 examples: a bare minimum code template `xdrv_100_my_project_minimal.ino`
 and a template with custom commands `xdrv_101_my_project_with_commands.ino`. The latter includes an example of sending a MQTT message.
 
 Example 3 is added to adopt suggestions of the Tasmota developer as indicated in [this discussion](https://github.com/arendst/Tasmota/discussions/14205). It makes dynamic allocation of required large-size buffers and more advanced way of addind driver in Tasmota.
+
+Include your initialization code (to be run once) inside `MyProjectInit()` function. This roughly equivalent to Atruino's `setup()` function.
+
+Main functionality of your Tasmota integration will be used inside `MyProjectProcessing()` function. This roughly equivalent to Atruino's `loop()` function. Tasmota offers some freedom in how often your code is going to be polled. In `XdrvXXX` function you have an option to select between `FUNC_EVERY_SECOND`, `FUNC_EVERY_250_MSECOND`, etc where `MyProjectProcessing()` is called.
+
+Finally, if you want to include some custom command that can be used in eg. Tasmota Web console - define your own commands and add your code into command functions found in a provided example.
 
 Another example is available in a separate repository: [Tasmota Nexus 433 MHz to MQTT Gateway for Home Assistant](https://github.com/phpcoder/tasmota-nexus-mqtt).
 
@@ -76,6 +82,9 @@ pio run --target upload && pio device monitor
 
 Provided with your correct WiFi credentials upon successful upload, Tasmota with your bare minimum code allows you to connect to your device web interface with a browser and see your debug messages in its Console. Even without WiFi credentials your Tasmota powered device will show up as a WiFi hotspot which makes possible to configure all needed parameters.
 
+## Upload your firmware with OTA
+
+During code development Platformio supports firmware upload by serial connection with your ESP8266/ESP32 device. When a remote IoT device needs a firmware update, OTA (over-the-air) upload comes handy. Find your compiled firmware in `.pio/build/tasmota-lite/firmware.bin` file and provide its path into Tasmota Web interface Firmware Update section.
 
 
 ## Links
